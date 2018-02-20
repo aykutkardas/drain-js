@@ -12,7 +12,7 @@ Cool number action for UI
 ```
 ##### Javascript
 ```js
-Drain.do({ from: '.from', to: '.to', qua: 30000, });
+Drain.do({ from: '.from', to: '.to', qua: 30000 });
 ```
 
 ##### Result
@@ -25,7 +25,7 @@ Drain.do({ from: '.from', to: '.to', qua: 30000, });
 ```
 ##### Javascript
 ```js
-Drain.do({ from: '.from', qua: 100, });
+Drain.do({ from: '.from', qua: 100 });
 ```
 
 ##### Result
@@ -39,7 +39,7 @@ Drain.do({ from: '.from', qua: 100, });
 ```
 ##### Javascript
 ```js
-Drain.do({ to: '.to', qua: 100, });
+Drain.do({ to: '.to', qua: 100 });
 ```
 
 ##### Result
