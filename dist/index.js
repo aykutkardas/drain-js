@@ -1,6 +1,5 @@
 "use strict";
 
-// var Drain = Drain || {};
 var __assign = undefined && undefined.__assign || function () {
     __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -33,7 +32,11 @@ var Drain = /** @class */function () {
             diff = staticValues.from - qua - dynamicValues.from;
         }
         if ((isDefinedStaticToValue || isDefinedStaticFromValue) && qua) {
-            if (diff > 10000 || diff < -10000) step = 9999;else if (diff > 1000 || diff < -1000) step = 999;else if (diff > 100 || diff < -100) step = 99;else if (diff > 10 || diff < -10) step = 9;
+            var isNegative = diff < 0;
+            step = isNegative ? -diff : diff;
+            var newDiff = diff.toString().replace(/./gmi, "9");
+            step = parseInt(newDiff.slice(0, newDiff.length - 1));
+            step = isNaN(step) ? 1 : step;
             if (fromElement) {
                 drainValue.dynamicValues.from -= step;
                 fromElement.innerHTML = drainValue.dynamicValues.from.toString();
