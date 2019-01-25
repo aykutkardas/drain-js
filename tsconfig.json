@@ -9,7 +9,7 @@
     "lib": ["dom", "es6", "es5", "es2017"],
     "resolveJsonModule": true
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/index.ts"],
   "exclude": ["./test/**/*.spec.ts"],
   "compileOnSave": false
 }
