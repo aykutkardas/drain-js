@@ -16,13 +16,13 @@ var Drain = /** @class */function () {
     function Drain() {}
     Drain.transfer = function (name) {
         var drainValue = Drain.memory[name];
-        console.log(drainValue.dynamicValues.from);
         var diff;
         var step = 1;
         var staticValues = drainValue.staticValues,
             dynamicValues = drainValue.dynamicValues,
             fromElement = drainValue.fromElement,
             toElement = drainValue.toElement,
+            speed = drainValue.speed,
             qua = drainValue.qua;
         var isDefinedStaticToValue = typeof staticValues.to === "number";
         var isDefinedStaticFromValue = typeof staticValues.from === "number";
@@ -32,11 +32,7 @@ var Drain = /** @class */function () {
             diff = staticValues.from - qua - dynamicValues.from;
         }
         if ((isDefinedStaticToValue || isDefinedStaticFromValue) && qua) {
-            var isNegative = diff < 0;
-            step = isNegative ? -diff : diff;
-            var newDiff = diff.toString().replace(/./gmi, "9");
-            step = parseInt(newDiff.slice(0, newDiff.length - 1));
-            step = isNaN(step) ? 1 : step;
+            step = qua / (speed / 100);
             if (fromElement) {
                 drainValue.dynamicValues.from -= step;
                 fromElement.innerHTML = drainValue.dynamicValues.from.toString();
@@ -48,6 +44,9 @@ var Drain = /** @class */function () {
                 toElement.value = drainValue.dynamicValues.to.toString();
             }
             Drain.memory[name] = drainValue;
+            if (drainValue.callback) {
+                drainValue.callback(drainValue);
+            }
             if (diff === 0) {
                 if (fromElement) {
                     fromElement.innerHTML = (staticValues.from - qua).toString();
@@ -59,9 +58,6 @@ var Drain = /** @class */function () {
                 }
                 // @ts-ignore
                 clearInterval(Drain.process[name]);
-                if (drainValue.callback) {
-                    drainValue.callback(drainValue);
-                }
                 delete Drain.memory[name];
             }
         }
@@ -71,14 +67,26 @@ var Drain = /** @class */function () {
     Drain.createProcessName = function () {
         return "P" + Math.random().toString().split(".")[1];
     };
+    Drain.getElementWithValue = function (selector) {
+        var element = document.querySelector(selector);
+        var elInnerHTML = parseInt(element.innerHTML);
+        var elValue = parseInt(element.value);
+        var data = {
+            element: element,
+            value: 0
+        };
+        if (!isNaN(elInnerHTML)) {
+            data.value = elInnerHTML;
+        } else if (!isNaN(elValue)) {
+            data.value = elValue;
+        }
+        return data;
+    };
     Drain.do = function (data, callback) {
-        if (!data) {
+        if (!data || !data.from && !data.to && !data.qua) {
             return;
         }
-        if (!data.from && !data.to && !data.qua) {
-            return;
-        }
-        var drainValue = __assign({}, data);
+        var drainValue = __assign({}, data, { dynamicValues: { from: 0, to: 0 }, staticValues: { from: 0, to: 0 } });
         if (!data.name) {
             drainValue.name = Drain.createProcessName();
         }
@@ -88,38 +96,30 @@ var Drain = /** @class */function () {
         var from = drainValue.from,
             to = drainValue.to,
             name = drainValue.name;
-        drainValue.staticValues = { from: 0, to: 0 };
-        drainValue.dynamicValues = { from: 0, to: 0 };
         if (typeof from === "string") {
-            var element = document.querySelector(from);
-            var innerHTML = parseInt(element.innerHTML);
-            var value = parseInt(element.value);
-            drainValue.fromElement = element;
-            if (!isNaN(innerHTML)) {
-                drainValue.staticValues.from = innerHTML;
-                drainValue.dynamicValues.from = innerHTML;
-            } else if (!isNaN(value)) {
-                drainValue.staticValues.from = value;
-                drainValue.dynamicValues.from = value;
-            }
+            var data_1 = Drain.getElementWithValue(from);
+            drainValue.fromElement = data_1.element;
+            drainValue.staticValues.from = data_1.value;
+            drainValue.dynamicValues.from = data_1.value;
+        } else if (typeof from === "number") {
+            drainValue.from = from;
+        } else {
+            drainValue.from = 0;
         }
         if (typeof to === "string") {
-            var element = document.querySelector(to);
-            var innerHTML = parseInt(element.innerHTML);
-            var value = parseInt(element.value);
-            drainValue.toElement = element;
-            if (!isNaN(innerHTML)) {
-                drainValue.staticValues.to = innerHTML;
-                drainValue.dynamicValues.to = innerHTML;
-            } else if (!isNaN(value)) {
-                drainValue.staticValues.to = value;
-                drainValue.dynamicValues.to = value;
-            }
+            var data_2 = Drain.getElementWithValue(to);
+            drainValue.toElement = data_2.element;
+            drainValue.staticValues.to = data_2.value;
+            drainValue.dynamicValues.to = data_2.value;
+        } else if (typeof to === "number") {
+            drainValue.to = to;
+        } else {
+            drainValue.to = 0;
         }
         Drain.memory[name] = drainValue;
         Drain.process[name] = setInterval(function () {
             Drain.transfer(name);
-        }, drainValue.speed || 100);
+        }, 100);
     };
     return Drain;
 }();

@@ -1,38 +1,3 @@
-type ProcessType = { [name: string]: Object };
-type MemoryType = { [name: string]: Object };
-
-type DrainInput = {
-  from?: string | number;
-  to?: string | number;
-  qua?: number;
-  name?: string;
-  speed?: number;
-};
-
-type DrainValue = {
-  from?: string | number;
-  to?: string | number;
-  qua?: number;
-  name?: string;
-  callback?: Function;
-  speed?: number;
-
-  fromElement?: HTMLElement | HTMLInputElement;
-  toElement?: HTMLElement | HTMLInputElement;
-
-  staticValues?: {
-    from: number;
-    to: number;
-  };
-
-  dynamicValues?: {
-    from: number;
-    to: number;
-  };
-};
-
-type DoMethodType = (data: DrainInput, callback: Function) => void;
-
 class Drain {
   static process: ProcessType = {};
   static memory: MemoryType = {};
@@ -43,16 +8,37 @@ class Drain {
       .toString()
       .split(".")[1];
 
+  static getElementWithValue: GetElementWithValueMethodType = selector => {
+    const element = <HTMLInputElement | HTMLElement>(
+      document.querySelector(selector)
+    );
+    const elInnerHTML = parseInt(element.innerHTML);
+    const elValue = parseInt((<HTMLInputElement>element).value);
+
+    const data = {
+      element,
+      value: 0
+    };
+
+    if (!isNaN(elInnerHTML)) {
+      data.value = elInnerHTML;
+    } else if (!isNaN(elValue)) {
+      data.value = elValue;
+    }
+
+    return data;
+  };
+
   static do: DoMethodType = (data, callback) => {
-    if (!data) {
+    if (!data || (!data.from && !data.to && !data.qua)) {
       return;
     }
 
-    if (!data.from && !data.to && !data.qua) {
-      return;
-    }
-
-    const drainValue: DrainValue = { ...data };
+    const drainValue: DrainValue = {
+      ...data,
+      dynamicValues: { from: 0, to: 0 },
+      staticValues: { from: 0, to: 0 }
+    };
 
     if (!data.name) {
       drainValue.name = Drain.createProcessName();
@@ -64,48 +50,36 @@ class Drain {
 
     const { from, to, name } = drainValue;
 
-    drainValue.staticValues = { from: 0, to: 0 };
-    drainValue.dynamicValues = { from: 0, to: 0 };
-
     if (typeof from === "string") {
-      const element = document.querySelector(from);
-      const innerHTML = parseInt(element.innerHTML);
-      const value = parseInt((<HTMLInputElement>element).value);
-
-      drainValue.fromElement = <HTMLElement>element;
-      if (!isNaN(innerHTML)) {
-        drainValue.staticValues.from = innerHTML;
-        drainValue.dynamicValues.from = innerHTML;
-      } else if (!isNaN(value)) {
-        drainValue.staticValues.from = value;
-        drainValue.dynamicValues.from = value;
-      }
+      const data = Drain.getElementWithValue(from);
+      drainValue.fromElement = data.element;
+      drainValue.staticValues.from = data.value;
+      drainValue.dynamicValues.from = data.value;
+    } else if (typeof from === "number") {
+      drainValue.from = from;
+    } else {
+      drainValue.from = 0;
     }
 
     if (typeof to === "string") {
-      const element = document.querySelector(to);
-      const innerHTML = parseInt(element.innerHTML);
-      const value = parseInt((<HTMLInputElement>element).value);
-
-      drainValue.toElement = <HTMLElement>element;
-      if (!isNaN(innerHTML)) {
-        drainValue.staticValues.to = innerHTML;
-        drainValue.dynamicValues.to = innerHTML;
-      } else if (!isNaN(value)) {
-        drainValue.staticValues.to = value;
-        drainValue.dynamicValues.to = value;
-      }
+      const data = Drain.getElementWithValue(to);
+      drainValue.toElement = data.element;
+      drainValue.staticValues.to = data.value;
+      drainValue.dynamicValues.to = data.value;
+    } else if (typeof to === "number") {
+      drainValue.to = to;
+    } else {
+      drainValue.to = 0;
     }
 
     Drain.memory[name] = drainValue;
     Drain.process[name] = setInterval(() => {
       Drain.transfer(name);
-    }, drainValue.speed || 100);
+    }, 100);
   };
 
   static transfer(name: string) {
     const drainValue: DrainValue = Drain.memory[name];
-    console.log(drainValue.dynamicValues.from);
     let diff: number;
     let step: number = 1;
 
@@ -114,6 +88,7 @@ class Drain {
       dynamicValues,
       fromElement,
       toElement,
+      speed,
       qua
     } = drainValue;
 
@@ -127,11 +102,7 @@ class Drain {
     }
 
     if ((isDefinedStaticToValue || isDefinedStaticFromValue) && qua) {
-      const isNegative = diff < 0;
-      step = isNegative ? -(diff) : diff;
-      const newDiff = diff.toString().replace(/./gmi, "9");
-      step = parseInt(newDiff.slice(0, newDiff.length -1));
-      step = isNaN(step) ? 1 : step;
+      step = qua / (speed / 100);
 
       if (fromElement) {
         drainValue.dynamicValues.from -= step;
@@ -151,6 +122,10 @@ class Drain {
 
       Drain.memory[name] = drainValue;
 
+      if (drainValue.callback) {
+        drainValue.callback(drainValue);
+      }
+
       if (diff === 0) {
         if (fromElement) {
           fromElement.innerHTML = (staticValues.from - qua).toString();
@@ -168,12 +143,16 @@ class Drain {
         // @ts-ignore
         clearInterval(Drain.process[name]);
 
-        if (drainValue.callback) {
-          drainValue.callback(drainValue);
-        }
-
         delete Drain.memory[name];
       }
     }
   }
 }
+
+import {
+  ProcessType,
+  MemoryType,
+  GetElementWithValueMethodType,
+  DoMethodType,
+  DrainValue
+} from "./index.d";
