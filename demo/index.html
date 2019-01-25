@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css"
+    />
+    <style>
+      td {
+        min-width: 100px;
+      }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="../dist/index.js"></script>
+    <title>Drain.js Demo</title>
+  </head>
+  <body>
+    <table class="table is-bordered">
+      <tr>
+        <th>From</th>
+        <th>To</th>
+      </tr>
+      <tr>
+        <td class="from">12000</td>
+        <td class="to">20000</td>
+        <td><button class="button is-primary">Send (2000)</button></td>
+      </tr>
+    </table>
+
+    <script>
+      document.querySelector("button").addEventListener("click", () => {
+        let i = 0;
+        Drain.do({
+          from: ".from",
+          to: ".to",
+          qua: 2000,
+          speed: 2000,
+          callback: drainValue => {
+            console.log((i += 1));
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
