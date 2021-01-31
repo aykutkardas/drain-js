@@ -10,14 +10,21 @@ npm install drain-js
 
 ## Usage
 
-`drain(start: Number, end: Number, callback: Function)`
+```ts
+drain({ 
+    start: Number, 
+    end: Number, 
+    onInterval?: Function, 
+    onComplete?: Function 
+});
+```
 
 ### Sample
 
 ```js
 import drain from 'drain-js';
 
-drain(3000, 2750, console.log);
+drain({ start: 3000, end: 2750, onInterval: console.log });
 
 // Output
 2901
