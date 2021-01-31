@@ -1,0 +1,28 @@
+{
+  "name": "drain-js",
+  "version": "0.0.1",
+  "description": "Number change animator",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aykutkardas/Drain.js.git"
+  },
+  "keywords": [
+    "animation",
+    "number",
+    "ui"
+  ],
+  "author": "Aykut Kardaş",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aykutkardas/Drain.js/issues"
+  },
+  "homepage": "https://github.com/aykutkardas/Drain.js#readme",
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
