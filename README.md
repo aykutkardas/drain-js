@@ -2,6 +2,10 @@
 
 A callback based utility for making fluent number changes.
 
+### [Demo](https://codesandbox.io/s/drain-js-react-demo-crzyu)
+
+---
+
 ## Install
 
 ```sh
