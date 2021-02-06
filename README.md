@@ -31,9 +31,9 @@ import drain from 'drain-js';
 drain({ start: 3000, end: 2750, onInterval: console.log });
 
 // Output
-2901
-2802
-2793
+2906
+2812
+2803
 ...
 2752
 2751

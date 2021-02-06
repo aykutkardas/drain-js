@@ -2,13 +2,13 @@
     "compilerOptions": {
       "outDir": "./dist/",
       "target": "es5",
-      "module": "esnext",
+      "module": "CommonJS",
       "moduleResolution": "node",
       "sourceMap": false,
       "experimentalDecorators": true,
       "lib": ["dom", "es6", "es5", "es2017"],
       "resolveJsonModule": true,
-      "removeComments": true
+      "removeComments": true,
     },
     "include": ["./src/**/*"],
     "exclude": ["./test/**/*.spec.ts"],
