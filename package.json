@@ -1,6 +1,6 @@
 {
   "name": "drain-js",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Number change animator",
   "main": "dist/index.js",
   "scripts": {
