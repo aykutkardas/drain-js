@@ -1,4 +1,4 @@
-# Drain.js
+# drain-js
 
 A callback based utility for making fluent number changes.
 
@@ -15,13 +15,22 @@ npm install drain-js
 ## Usage
 
 ```ts
-drain({ 
-    start: Number, 
-    end: Number, 
-    onInterval?: Function, 
-    onComplete?: Function 
+drain({
+  start: Number,
+  end: Number,
+  speed: Number,
+  onInterval: Function,
+  onComplete: Function,
 });
 ```
+
+| Name       | Default   | Description                                                                                                  |
+| ---------- | --------- | ------------------------------------------------------------------------------------------------------------ |
+| speed      | 100       | An animation can be completed in about 10 to 20 steps. The `speed` (ms) value is the time set for each step. |
+| start      | undefined | The value at which the animation will start                                                                  |
+| end        | undefined | The value at which the animation will end.                                                                   |
+| onInterval | undefined | The function that will run at each step until the animation is complete.                                     |
+| onComplete | undefined | The function to run when the animation is complete.                                                          |
 
 ### Sample
 
@@ -39,3 +48,5 @@ drain({ start: 3000, end: 2750, onInterval: console.log });
 2751
 2750
 ```
+
+![gif](./preview.gif)
