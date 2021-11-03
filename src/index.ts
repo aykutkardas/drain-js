@@ -1,11 +1,12 @@
 type drainArgs = {
-  start: number,
-  end: number,
-  onInterval?: Function,
-  onComplete?: Function
-}
+  start: number;
+  end: number;
+  speed?: number;
+  onInterval?: Function;
+  onComplete?: Function;
+};
 
-function drain({ start, end, onInterval, onComplete }: drainArgs) {
+function drain({ start, end, onInterval, onComplete, speed = 100 }: drainArgs) {
   let diff = Math.abs(end - start);
   let direction = end - start > 0 ? "up" : "down";
   let step = 1;
@@ -33,8 +34,8 @@ function drain({ start, end, onInterval, onComplete }: drainArgs) {
   }
 
   setTimeout(() => {
-    drain({ start: start, end: end, onInterval, onComplete });
-  }, 100);
+    drain({ start, end, onInterval, onComplete, speed });
+  }, speed);
 }
 
 export default drain;
