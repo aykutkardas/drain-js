@@ -1,5 +1,8 @@
 # drain-js
 
+[![npm](https://img.shields.io/npm/v/drain-js?color=%234fc921)](https://www.npmjs.com/package/drain-js)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?color=%234fc921)](https://opensource.org/licenses/MIT)
+
 A callback based utility for making fluent number changes.
 
 ### [Demo](https://codesandbox.io/s/drain-js-react-demo-crzyu)
