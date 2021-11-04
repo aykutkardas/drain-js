@@ -1,6 +1,6 @@
 {
   "name": "drain-js",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Makes smooth transitions between two numbers.",
   "main": "dist/index.js",
   "scripts": {
