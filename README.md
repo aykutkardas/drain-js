@@ -3,11 +3,9 @@
 [![npm](https://img.shields.io/npm/v/drain-js?color=%234fc921)](https://www.npmjs.com/package/drain-js)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?color=%234fc921)](https://opensource.org/licenses/MIT)
 
+![gif](./preview.gif)
+
 A callback based utility for making fluent number changes.
-
-### [Demo](https://codesandbox.io/s/drain-js-react-demo-crzyu)
-
----
 
 ## Install
 
@@ -15,7 +13,28 @@ A callback based utility for making fluent number changes.
 npm install drain-js
 ```
 
+```sh
+yarn add drain-js
+```
+
 ## Usage
+
+```js
+import drain from 'drain-js';
+
+drain({ start: 3000, end: 2750, onInterval: console.log });
+
+// Output
+2906
+2812
+2803
+...
+2752
+2751
+2750
+```
+
+### Parameters
 
 ```ts
 drain({
@@ -35,21 +54,11 @@ drain({
 | onInterval | undefined | The function that will run at each step until the animation is complete.                                     |
 | onComplete | undefined | The function to run when the animation is complete.                                                          |
 
-### Sample
+### Demo List
 
-```js
-import drain from 'drain-js';
-
-drain({ start: 3000, end: 2750, onInterval: console.log });
-
-// Output
-2906
-2812
-2803
-...
-2752
-2751
-2750
-```
-
-![gif](./preview.gif)
+| Name             | Status | URL                                                        |
+| ---------------- | ------ | ---------------------------------------------------------- |
+| Demo             | WIP    | -                                                          |
+| Demo with React  | ✔️     | [Link](https://codesandbox.io/s/drain-js-react-demo-crzyu) |
+| Demo with Vue    | WIP    | -                                                          |
+| Demo with Svelte | WIP    | -                                                          |
