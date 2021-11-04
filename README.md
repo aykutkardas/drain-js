@@ -3,7 +3,8 @@
 [![npm](https://img.shields.io/npm/v/drain-js?color=%234fc921)](https://www.npmjs.com/package/drain-js)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?color=%234fc921)](https://opensource.org/licenses/MIT)
 
-![gif](./preview.gif)
+![Preview](./preview-2.gif)
+,
 
 A callback based utility for making fluent number changes.
 
@@ -34,15 +35,17 @@ drain({ start: 3000, end: 2750, onInterval: console.log });
 2750
 ```
 
+![Preview](./preview.gif)
+
 ### Parameters
 
 ```ts
 drain({
   start: Number,
   end: Number,
-  speed?: Number,
-  onInterval?: Function,
-  onComplete?: Function,
+  speed: Number,
+  onInterval: Function,
+  onComplete: Function,
 });
 ```
 
@@ -56,9 +59,9 @@ drain({
 
 ### Demo List
 
-| Name             | Status | URL                                                        |
-| ---------------- | ------ | ---------------------------------------------------------- |
-| Demo             | WIP    | -                                                          |
-| Demo with React  | ✔️     | [Link](https://codesandbox.io/s/drain-js-react-demo-crzyu) |
-| Demo with Vue    | WIP    | -                                                          |
-| Demo with Svelte | WIP    | -                                                          |
+| Name             | Status | URL                                                             |
+| ---------------- | ------ | --------------------------------------------------------------- |
+| Demo             | ✔️     | [Link](https://codepen.io/aykutkardas/pen/QWMaeqw?editors=1010) |
+| Demo with React  | ✔️     | [Link](https://codesandbox.io/s/drain-js-react-demo-crzyu)      |
+| Demo with Vue    | WIP    | -                                                               |
+| Demo with Svelte | WIP    | -                                                               |
