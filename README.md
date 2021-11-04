@@ -4,7 +4,6 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg?color=%234fc921)](https://opensource.org/licenses/MIT)
 
 ![Preview](./preview-2.gif)
-,
 
 A callback based utility for making fluent number changes.
 
@@ -59,9 +58,9 @@ drain({
 
 ### Demo List
 
-| Name             | Status | URL                                                             |
-| ---------------- | ------ | --------------------------------------------------------------- |
-| Demo             | ✔️     | [Link](https://codepen.io/aykutkardas/pen/QWMaeqw?editors=1010) |
-| Demo with React  | ✔️     | [Link](https://codesandbox.io/s/drain-js-react-demo-crzyu)      |
-| Demo with Vue    | WIP    | -                                                               |
-| Demo with Svelte | WIP    | -                                                               |
+| Name             | Status | URL                                                                        |
+| ---------------- | ------ | -------------------------------------------------------------------------- |
+| Demo             | ✔️     | [Link](https://codepen.io/aykutkardas/pen/QWMaeqw?editors=1010)            |
+| Demo with React  | ✔️     | [Link](https://codesandbox.io/s/drain-js-react-demo-crzyu)                 |
+| Demo with Vue    | ✔️     | [Link](https://codesandbox.io/s/drain-js-vue-demo-pisdm?file=/src/App.vue) |
+| Demo with Svelte | WIP    | -                                                                          |
