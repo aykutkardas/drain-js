@@ -21,9 +21,9 @@ npm install drain-js
 drain({
   start: Number,
   end: Number,
-  speed: Number,
-  onInterval: Function,
-  onComplete: Function,
+  speed?: Number,
+  onInterval?: Function,
+  onComplete?: Function,
 });
 ```
 

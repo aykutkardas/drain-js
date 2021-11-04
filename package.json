@@ -1,27 +1,30 @@
 {
   "name": "drain-js",
-  "version": "0.2.1",
-  "description": "Number change animator",
+  "version": "0.2.2",
+  "description": "Makes smooth transitions between two numbers.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aykutkardas/Drain.js.git"
+    "url": "git+https://github.com/aykutkardas/drain-js.git"
   },
   "keywords": [
     "animation",
+    "transation",
     "number",
     "ui"
   ],
-  "author": "Aykut Kardaş",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aykutkardas/Drain.js/issues"
+  "author": {
+    "name": "Aykut Kardaş",
+    "email": "aykutkrds@gmail.com"
   },
-  "homepage": "https://github.com/aykutkardas/Drain.js#readme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aykutkardas/drain-js/issues"
+  },
+  "homepage": "https://github.com/aykutkardas/drain-js#readme",
   "devDependencies": {
     "typescript": "^4.1.3"
   }
