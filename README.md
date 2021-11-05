@@ -58,9 +58,9 @@ drain({
 
 ### Demo List
 
-| Name             | Status | URL                                                                        |
-| ---------------- | ------ | -------------------------------------------------------------------------- |
-| Demo             | ✔️     | [Link](https://codepen.io/aykutkardas/pen/QWMaeqw?editors=1010)            |
-| Demo with React  | ✔️     | [Link](https://codesandbox.io/s/drain-js-react-demo-crzyu)                 |
-| Demo with Vue    | ✔️     | [Link](https://codesandbox.io/s/drain-js-vue-demo-pisdm?file=/src/App.vue) |
-| Demo with Svelte | WIP    | -                                                                          |
+| Name             | Status | URL                                                                          |
+| ---------------- | ------ | ---------------------------------------------------------------------------- |
+| Demo             | ✔️     | [Link](https://codepen.io/aykutkardas/pen/QWMaeqw?editors=1010)              |
+| Demo with React  | ✔️     | [Link](https://codesandbox.io/s/drain-js-react-demo-crzyu)                   |
+| Demo with Vue    | ✔️     | [Link](https://codesandbox.io/s/drain-js-vue-demo-pisdm?file=/src/App.vue)   |
+| Demo with Svelte | ✔️     | [Link](https://codesandbox.io/s/drain-js-svelte-demo-i2m3e?file=/App.svelte) |
