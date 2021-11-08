@@ -11,10 +11,13 @@
     "url": "git+https://github.com/aykutkardas/drain-js.git"
   },
   "keywords": [
-    "animation",
-    "transation",
     "number",
-    "ui"
+    "transition",
+    "animation",
+    "react",
+    "vue",
+    "svelte",
+    "anuglar"
   ],
   "author": {
     "name": "Aykut Kardaş",
